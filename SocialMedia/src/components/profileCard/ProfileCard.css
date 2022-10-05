@@ -1,4 +1,5 @@
 .ProfileCard{
+  
     border-radius: 1.5rem;
     display: flex;
     flex-direction: column;
@@ -9,7 +10,7 @@
 
 }
 .ProfileImages{
-    height: 200px;
+   
     position: relative;
     display: flex;
     flex-direction: column;
