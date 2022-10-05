@@ -26,9 +26,13 @@ useEffect(()=>{
     <div className="FollwerCard">
         <h3>People you may know</h3>
         {persons.map((person,id)=>{
-            return(
-               <User person = {person} key ={id}/>
-            )
+            if(person._id !== user._id ){
+                return(
+                
+                    <User person = {person} key ={id}/>
+                 )
+            }
+            
         })}
     </div>
   )
