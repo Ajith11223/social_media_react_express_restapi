@@ -9,11 +9,13 @@ import {Admin} from './Admin'
 ReactDOM.render(
   <Provider store = {store}>
 <BrowserRouter>
-    {/* <Routes>
+    <Routes>
       <Route path="*" element = {<App/>} />
-    </Routes> */}
+    </Routes>
     
-     <Admin/>
+    <Routes>
+      <Route path="*" element = {<Admin/>}/>
+    </Routes>
 </BrowserRouter>
   </Provider>,
 

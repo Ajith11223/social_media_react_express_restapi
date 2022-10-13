@@ -1,13 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Sidebar.css'
 import logo from '../../img/logo.png'
 import { SidebarData}  from '../../data/Data.js'
-import {UilSignOutAlt} from '@iconscout/react-unicons'
+import {UilSignOutAlt,UilBars} from '@iconscout/react-unicons'
+import {motion} from 'framer-motion'
 
 
 const Sidebar = () => {
+
+    const [selected,setSelected] = useState(0)
+    const [expended,setExpended] = useState(true)
+
+  const  sidebarVariants ={
+    true:{
+        left:"0"
+    },
+    false:{
+        left:"-60%"
+    }
+  }
+
   return (
-   <div className="Sidebar">
+    <>
+   
+    <div className='bars' style={expended ? {left:"44%"} : {left:"5%"}}
+    onClick={()=> setExpended(!expended)}
+    >
+        <UilBars/>
+    </div>
+   <motion.div className="Sidebar"
+   variants={sidebarVariants}
+   animate={window.innerWidth <= 768? `${expended}`:''}
+   >
     <div className="logo">
         <img src={logo} alt="" />
         <span>Co<span>nn</span>ect</span>
@@ -18,9 +42,14 @@ const Sidebar = () => {
     <div className="menu">
        {SidebarData.map((item,index)=>{
         return(
-            <div className="menuItem active">
+            <div className={selected === index?'menuItem active':  "menuItem"}
+            onClick={()=>setSelected(index)}
+            key={index}>
+                <div>
                 <item.icon/>
-                <span>
+
+                </div>
+                <span >
                     {item.heading}
                 </span>
             </div>
@@ -33,7 +62,8 @@ const Sidebar = () => {
         
     
     </div>
-   </div>
+   </motion.div>
+   </>
   )
 }
 
