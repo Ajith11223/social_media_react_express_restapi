@@ -4,7 +4,7 @@ import { Provider } from "react-redux";
 import App from "./App";
 import store from "./store/ReduxStore";
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
-import {Admin} from './Admin'
+
 
 ReactDOM.render(
   <Provider store = {store}>
@@ -13,9 +13,9 @@ ReactDOM.render(
       <Route path="*" element = {<App/>} />
     </Routes>
     
-    <Routes>
+    {/* <Routes>
       <Route path="*" element = {<Admin/>}/>
-    </Routes>
+    </Routes> */}
 </BrowserRouter>
   </Provider>,
 

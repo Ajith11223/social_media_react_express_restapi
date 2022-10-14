@@ -46,9 +46,10 @@ color: var(--orange);
     transition: all 300ms ease;
     font-size: 16px;
     border-radius: 0.7rem;
-
+  
 
 }
+
 .menuItem:hover{
     cursor: pointer;
 }

@@ -4,6 +4,9 @@ import Home from "./pages/home/Home";
 import Profile from "./pages/Profile/Profile";
 import {Routes,Route,Navigate} from 'react-router-dom'
 import { useSelector } from "react-redux";
+import  {Admin}  from "./pages/AdminD/Admin";
+import UserManagement from "./pages/UserManagement/UserManagement";
+import PostsManagement from "./pages/PostsManagement/PostsManagement";
 
 function App() {
 
@@ -22,6 +25,10 @@ function App() {
 
         <Route path="/auth" element = {user? <Navigate to= "../home" /> : <Auth/>} /> 
         <Route path="/profile/:id" element = {user ? <Profile/> :  <Navigate to="../auth" />} />
+        <Route path="/admin" element = {user ? <Admin/> :  <Navigate to="../auth" />} />
+        <Route path="/user" element = {user ? <UserManagement/> :  <Navigate to="../auth" />} />
+        <Route path="/post" element = {user ? <PostsManagement/> :  <Navigate to="../auth" />} />
+        <Route path="/analytics" element = {user ? <PostsManagement/> :  <Navigate to="../auth" />} />
       </Routes>
       
      
