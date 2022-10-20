@@ -11,6 +11,7 @@ import PostsManagement from "./pages/PostsManagement/PostsManagement";
 function App() {
 
   const user = useSelector((state)=> state.authReducer.authData)
+  console.log(user);
 
   return (
 
@@ -25,11 +26,13 @@ function App() {
 
         <Route path="/auth" element = {user? <Navigate to= "../home" /> : <Auth/>} /> 
         <Route path="/profile/:id" element = {user ? <Profile/> :  <Navigate to="../auth" />} />
+        
         <Route path="/admin" element = {user ? <Admin/> :  <Navigate to="../auth" />} />
-        <Route path="/user" element = {user ? <UserManagement/> :  <Navigate to="../auth" />} />
+        <Route path="/admin/user" element = {user ? <UserManagement/> :  <Navigate to="../auth" />} />
         <Route path="/post" element = {user ? <PostsManagement/> :  <Navigate to="../auth" />} />
         <Route path="/analytics" element = {user ? <PostsManagement/> :  <Navigate to="../auth" />} />
       </Routes>
+      
       
      
     </div>

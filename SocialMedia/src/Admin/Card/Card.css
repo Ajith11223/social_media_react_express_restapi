@@ -71,9 +71,10 @@ font-size: 15px;
 .expendedCard{
     position: absolute;
     width: 60%;
-    height: 70vh;
+    height: 50vh;
     z-index: 9;
-    left: 13rem;
+    top: 120px;
+    left: 29rem;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;

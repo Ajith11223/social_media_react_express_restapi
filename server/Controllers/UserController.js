@@ -51,6 +51,7 @@ export const updateUser = async(req,res)=>{
 
    const {_id,currentUserAdminStatus,password} = req.body;
 
+
    if(id===_id || currentUserAdminStatus){
 
         try {
@@ -74,11 +75,39 @@ export const updateUser = async(req,res)=>{
         }
 
    }else{
-    res.status(403).json("Access Denied!")
+    res.status(403).json("Access Denied!jhh")
    }
 
 }
 
+// edit admin
+export const updateUserAdmin = async(req,res)=>{
+    const id = req.params.id;
+    console.log(id);
+    console.log(req.body);
+ 
+    // const {_id,block} = req.body;
+ 
+ //|| currentUserAdminStatus
+    if(id){
+ 
+         try {
+ 
+             
+             const user = await UserModel.findByIdAndUpdate(id,req.body,{new:true})
+ 
+             res.status(200).json({user})
+ 
+         } catch (error) {
+             res.status(500).json(error)
+             
+         }
+ 
+    }else{
+     res.status(403).json("Access Denied!")
+    }
+ 
+ }
 // user delete
 
 export const deleteUser = async(req,res)=>{

@@ -2,7 +2,7 @@ import { Modal, useMantineTheme } from '@mantine/core';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import './ProfileModal'
+import './ProfileModal.css'
 import { uploadImage } from '../../action/uploadAction';
 import { updateUser } from '../../action/userAction';
 
@@ -143,10 +143,10 @@ const handleSubmit = (e) =>{
              />
         </div>
 
-        <div>
-            Profile Image
+        <div className='inputFile'>
+            <span>Profile Image</span>
             <input type="file" name="profileImage" onChange={onImageChange} />
-            Cover Image
+            <span>Cover Image</span>
             <input type="file" name="coverImage" id="" onChange={onImageChange} />
         </div>
       </form>

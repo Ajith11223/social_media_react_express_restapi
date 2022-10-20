@@ -49,3 +49,10 @@
     cursor: pointer;
     background: transparent;
 }
+
+@media screen and (max-width:768px) {
+    .FollwerCard{
+        display: none;
+        
+    }
+}

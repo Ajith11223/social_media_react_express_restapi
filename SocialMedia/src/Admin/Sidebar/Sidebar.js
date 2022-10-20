@@ -46,20 +46,8 @@ const Sidebar = () => {
 
                 {/* menu side */}
                 <div className="menu">
-                    {/* {SidebarData.map((item,index)=>{
-        
-        return( */}
-                    {/* // <div className={selected === index?'menuItem active':  "menuItem" }         
-            //            
-            // key={index}>
-            //     <div>
-            //     <item.icon/>
-
-            //     </div>
-            //     <span >
-            //         {item.heading}ll
-            //     </span>
-            // </div> */}
+                 
+              
 
                  <Link to='/admin' style={{textDecoration: 'none',color:"white"}}>
                     <div className={selected === 0 ? 'menuItem active' : "menuItem"}
@@ -74,7 +62,8 @@ const Sidebar = () => {
                             </span>
                     </div>
                         </Link>
-                        <Link to='/user' style={{textDecoration: 'none',color:"white"}}>
+                        
+                        <Link to='/admin/user' style={{textDecoration: 'none',color:"white"}}>
                     <div className={selected === 1 ? 'menuItem active' : "menuItem"}
                         onClick={() => { setSelected(1) }} >
                         <div>
@@ -82,9 +71,9 @@ const Sidebar = () => {
 
                         </div>
 
-                            <span >
+                            <div  onClick={() => setSelected(1)}>
                                 Users
-                            </span>
+                            </div>
                     </div>
                         </Link>
                         <Link to='/post' style={{textDecoration: 'none',color:"white"}}>

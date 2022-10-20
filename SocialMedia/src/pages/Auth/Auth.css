@@ -94,3 +94,17 @@
     width: 404px;
     gap: 1rem;
 }
+
+@media screen and (max-width:800px) {
+    .infoForm{
+        width: 100%;
+        
+    }
+
+    .infoInput{
+        width: 30px;
+        /* display: flex; */
+        flex-direction: column;
+        
+    }
+}
