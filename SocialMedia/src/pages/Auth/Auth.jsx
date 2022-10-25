@@ -77,6 +77,15 @@ const resetForm = () =>{
                className='infoInput' name='password' 
                onChange={handleChange} value ={data.password}/>
 
+            <span style={{display : confirmPass ? "none" : "block",
+              color:"red",fontSize:"12px",
+              alignSelf:"flex-end",
+              marginRight:"5px"}}>
+
+                * blocked user
+
+              </span>
+
               {isSignUp && <input type="password" 
               placeholder='Confirm password'
                className='infoInput' name='confirmpass' 

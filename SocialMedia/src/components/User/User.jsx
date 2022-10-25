@@ -12,7 +12,7 @@ const User = ({person}) => {
   const [following,setFollowing] = useState(person.followers.includes(user._id))
 
   const handleFollow = () =>{
-   following ? dispatch(unFollowUser(person._id,user)) : dispatch(followUser())
+   following ? dispatch(unFollowUser(person._id,user)) : dispatch(followUser(person._id, user))
    setFollowing((prev)=> !prev)
   }
 

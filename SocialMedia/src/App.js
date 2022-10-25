@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import  {Admin}  from "./pages/AdminD/Admin";
 import UserManagement from "./pages/UserManagement/UserManagement";
 import PostsManagement from "./pages/PostsManagement/PostsManagement";
+import Chat from "./pages/Chat/Chat.js";
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/admin/user" element = {user ? <UserManagement/> :  <Navigate to="../auth" />} />
         <Route path="/post" element = {user ? <PostsManagement/> :  <Navigate to="../auth" />} />
         <Route path="/analytics" element = {user ? <PostsManagement/> :  <Navigate to="../auth" />} />
+        <Route path="/chat" element = {user ? <Chat/> :  <Navigate to="../auth" />} />
       </Routes>
       
       

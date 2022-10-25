@@ -11,6 +11,7 @@ const Posts = () => {
 
   const dispatch = useDispatch()
   const params = useParams()
+  console.log(params.id);
   const {user} = useSelector((state)=> state.authReducer.authData)
   let {posts,loading} = useSelector((state)=> state.postReducer)
 
@@ -19,7 +20,8 @@ const Posts = () => {
   },[])
 
   if(!posts) return " no posts";
-
+  console.log(456753);
+console.log(params.id);
   if(params.id){
     posts = posts.filter((post)=> post.userId === params.id)
   }

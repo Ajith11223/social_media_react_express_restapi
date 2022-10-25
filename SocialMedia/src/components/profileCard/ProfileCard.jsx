@@ -11,6 +11,7 @@ const ProfileCard = ({location}) => {
     const posts = useSelector((state)=>state.postReducer.posts)
     const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
+    console.log(user,"list");
     
 
   return (
@@ -26,7 +27,7 @@ const ProfileCard = ({location}) => {
     <div className="followStatus">
         <hr />
         <div>
-            <div className="follow">
+            <div className="follow" >
                 <span>{user.following.length}</span>
                 <span>Followings</span>
             </div>

@@ -33,3 +33,12 @@
         gap: 1rem;
     }
 }
+
+@media screen and (max-width:480px){
+    .navIcons{
+        
+        display: flex;
+        flex-direction: row !important;
+       
+    }
+}
