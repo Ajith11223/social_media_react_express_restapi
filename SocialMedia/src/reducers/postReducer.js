@@ -12,7 +12,7 @@ const postReducer = (
             return {...state, posts :[action.data,...state.posts],uploading:false,error:false}
 
         case "UPLOAD_FAILD"  :
-            return {...state,uploading:false,error:true}  
+            return {...state,uploading:false,error:true}       
                
              default :
              return state 

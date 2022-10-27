@@ -39,6 +39,7 @@ app.use('/user',UserRoute)
 app.use('/post',PostRoute)
 app.use('/upload',UploadRoute)
 app.use('/admin',UserRoute)
-app.use('/chat',ChatRoute)
+app.use('/chat',ChatRoute) 
 app.use('/message',MessageRoute)
+app.use('/posts',PostRoute)
 
