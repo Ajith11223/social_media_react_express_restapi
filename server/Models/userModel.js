@@ -39,7 +39,8 @@ const UserShema = mongoose.Schema(
         relationship : String,
         country:String,
         followers : [],
-        following : []
+        following : [],
+        savePost :[],
     },
 
     {timestamps : true}

@@ -17,6 +17,7 @@ export const logIn = (formData) => async(dispatch) => {
 
 // signup
 export const signUp = (formData) => async(dispatch) => {
+    console.log(formData,"action");
 
     dispatch({type : "AUTH_START"})
       try {

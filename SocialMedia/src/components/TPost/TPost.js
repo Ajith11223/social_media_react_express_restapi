@@ -1,10 +1,8 @@
 import React,{useEffect, useRef} from 'react'
-import './Post.css'
+import './TPost.css'
 
 import Comment from '../../img/comment.png'
-// import Share from '../../img/share.png'
-import Download from '../../img/download.png'
-import Completed from '../../img/completed.png'
+import Share from '../../img/share.png'
 import Heart from '../../img/like.png'
 import NotLike from '../../img/notlike.png'
 import Delete from '../../img/delete.png'
@@ -15,23 +13,23 @@ import { likePost } from '../../api/PostRequest'
 // import {deletePost} from '../../api/PostRequest'
 import { deletePost } from "../../action/uploadAction";
 import  { useDispatch } from 'react-redux'
-import { getUser, savePost } from '../../api/UserRequest'
+import { getUser } from '../../api/UserRequest'
 
 
 
 
-const Post = ({data,userId}) => {
+const TPost = ({data,userId}) => {
 
+  console.log(data,userId);
 
   const ref = useRef(null);
   const dispatch = useDispatch()
   const {user} = useSelector((state)=> state.authReducer.authData);
 
   const [liked,setLiked] = useState(data.likes.includes(user._id))
-  const [saved,setSaved] = useState(user.savePost.includes(data._id))
   const [likes,setLikes] = useState(data.likes.length);
-  const [save,setSave] = useState(false)
-  const [name,setName] = useState(true)
+  const [name,setName] = useState(null)
+
 
   const handleLike = () =>{
     setLiked((prev)=> !prev);
@@ -52,19 +50,11 @@ useEffect(()=>{
   const user = async() =>{
       const {data} = await getUser(userId);
      setName(data)
+      console.log(data,"user...");
 
   }
   user()
 },[])
-
-// post save
-const handleSave =(postId,userId)=>{
-  setSaved((prev)=> !prev);
-
-  setSave((prev)=> !prev)
-  savePost(postId,userId);
-  
-}
 
 
   return (
@@ -76,16 +66,7 @@ const handleSave =(postId,userId)=>{
     <div className="postReact">
         <img src={liked ? Heart : NotLike} alt="" style={{cursor:"pointer"}}  onClick={handleLike}/>
         <img src={Comment} alt="" />
-
-{  
-  !save?user._id !== data.userId?<img src={Download} style={{width:"25px",height:"25px"}}  alt=""
-  onClick={() => handleSave(data._id,user._id)} />:"" : 
-  user._id !== data.userId? <img src={Completed} onClick={()=> handleSave(data._id,user._id)} style={{width:"25px",height:"25px"}}  alt="" />:"" 
-  
-}
-
-  
-     
+        <img src={Share} alt="" />
         {user._id === data.userId ? <img style={{width:"25px",height:"25px"}} src={Delete} alt="" 
         onClick={()=> handleDelete(data._id,ref)} />:"" }
         
@@ -100,4 +81,4 @@ const handleSave =(postId,userId)=>{
   )
 }
 
-export default Post
+export default TPost

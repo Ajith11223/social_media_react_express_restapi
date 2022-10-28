@@ -162,8 +162,6 @@ export const followUser = async(req, res) => {
 
 export const unFollowUser = async(req,res)=>{
     const id = req.params.id 
-   console.log("fun",id);
-   console.log(req.body);
     const {_id} = req.body;
 
     if(_id === id ){
@@ -186,4 +184,25 @@ export const unFollowUser = async(req,res)=>{
             res.status(500).json(error)
         }
     }
+}
+
+export const postSave = async(req,res)=>{
+    const id = req.params.id
+    const userId = req.params.userId
+
+    
+    try {
+     const user = await UserModel.findById(userId)
+     console.log(user);
+    if(user.savePost.includes(id)){
+        await user.updateOne({$pull:{savePost : id}})
+        res.status(200).json("saved post removed");
+    }else{
+        await user.updateOne({$push:{savePost : id}})
+        res.status(200).json("saved post added");
+    }
+ } catch (error) {
+    res.status(500).json(error);
+ }
+
 }

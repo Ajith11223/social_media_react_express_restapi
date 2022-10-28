@@ -164,3 +164,17 @@ export const getAllPost = async(req,res) =>{
 
 }
 
+// get only user posts
+export const getTimelinePostsUser = async(req,res) =>{
+    const userId = req.params.id
+    console.log(userId,"controller");
+    try {
+        let posts = await PostModel.find({userId:userId})
+        posts = posts.map((post)=>{
+            return post
+        })
+        res.status(200).json(posts)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+}

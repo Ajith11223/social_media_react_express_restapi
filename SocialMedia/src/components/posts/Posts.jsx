@@ -17,27 +17,28 @@ const Posts = () => {
   let { posts, loading } = useSelector((state) => state.postReducer)
   const [allPosts, setAllPosts] = useState([])
 
+console.log(posts,"checking");
   useEffect(() => {
     dispatch(getTimelinePosts(user._id))
   }, [])
 
 
-  // useEffect(() => {
-  //   const data = getAllPost()
-  //   setAllPosts(data)
-   
-  // }, [])
-
   useEffect(()=>{
     const posts = async() =>{
         const {data} = await getAllPost();
         setAllPosts(data)
-        console.log(data,"gggg");
+        // console.log(data,"gggg");
 
     }
     posts()
 },[])
 
+
+
+
+
+
+  
   // if (!posts) return " no posts";
   // if(params.id){
   //   posts = posts.map((post)=> post.userId === params.id)
@@ -47,9 +48,11 @@ const Posts = () => {
  
   return (
     <div className="Posts">
-      {loading ? "Fetching posts..." : posts.map((post, id) => {
-
-        return <Post data={post} id={id} key={id} />
+      {loading ? "Fetching posts..." : allPosts.map((post, id) => {
+            
+        return <Post data={post} userId={post.userId} id={id}  key={id} />
+        
+        
       })}
     </div>
 

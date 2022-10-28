@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken'
 // Registering new user
 export const registerUser = async (req, res) => {
 
-
+console.log(req.body);
 
     // hashing using bcrypt
 
@@ -44,7 +44,7 @@ export const loginUser = async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        const user = await UserModel.findOne({ username: username,block:false })
+        const user = await UserModel.findOne({ username: username })
 
         if (user) {
             const validity = await bcrypt.compare(password, user.password)

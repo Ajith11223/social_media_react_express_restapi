@@ -22,3 +22,5 @@ export const followUser = (id,data) => API.put(`/user/${id}/follow`,data)
 
 export const unFollowUser = (id,data) => API.put(`/user/${id}/unfollow`,data)
 
+export const savePost = (postId,userId) => API.put(`/savepost/${postId}/${userId}`)
+

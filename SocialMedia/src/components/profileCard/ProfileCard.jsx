@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { getTimelinePostsUser } from '../../api/PostRequest'
 import Cover from '../../img/cover.jpg'
  import Profile from '../../img/profileImg.jpg'
  import './ProfileCard.css'
@@ -8,10 +10,22 @@ import Cover from '../../img/cover.jpg'
 const ProfileCard = ({location}) => {
 
     const {user} = useSelector((state) => state.authReducer.authData)
-    const posts = useSelector((state)=>state.postReducer.posts)
+    // const posts = useSelector((state)=>state.postReducer.posts)
     const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
+    const [userPosts,setUserPosts] = useState([])
 
-    console.log(user,"list");
+    // user posts
+    useEffect(()=>{
+        const posts = async() =>{
+            const {data} = await getTimelinePostsUser(user._id);
+            setUserPosts(data)
+            // console.log(data,"profile");
+    
+        }
+        posts()
+    },[])
+   
+
     
 
   return (
@@ -42,7 +56,7 @@ const ProfileCard = ({location}) => {
 
                 </div>
                 <div className="follow">
-                    <span>{posts.filter((post)=> post.userId === user._id).length}</span>
+                    <span>{userPosts.length}</span>
                     <span>Posts</span>
                 </div>
                 </>
