@@ -9,18 +9,17 @@ import Delete from '../../img/delete.png'
 
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
-import { likePost } from '../../api/PostRequest'
+import { getPost, likePost } from '../../api/PostRequest'
 // import {deletePost} from '../../api/PostRequest'
 import { deletePost } from "../../action/uploadAction";
 import  { useDispatch } from 'react-redux'
-import { getUser } from '../../api/UserRequest'
 
 
 
 
-const TPost = ({data,userId}) => {
+const TPost = ({data,userId,saveItem}) => {
 
-  console.log(data,userId);
+  console.log(data,userId,saveItem,"tpost");
 
   const ref = useRef(null);
   const dispatch = useDispatch()
@@ -28,7 +27,7 @@ const TPost = ({data,userId}) => {
 
   const [liked,setLiked] = useState(data.likes.includes(user._id))
   const [likes,setLikes] = useState(data.likes.length);
-  const [name,setName] = useState(null)
+  const [name,setName] = useState([])
 
 
   const handleLike = () =>{
@@ -43,25 +42,41 @@ const handleDelete = (postId,ref) =>{
   ref.current.remove()
 }
 
+const getSavdedArray = user.savePost
+  // getSavdedArray.map((id)=>{
+  //   setPostId(id)
+  // })
+
+//   console.log(postId,"hello");
 
 // get user
 
 useEffect(()=>{
-  const user = async() =>{
-      const {data} = await getUser(userId);
+  const post = async() =>{
+    getSavdedArray.map(async(id)=>{
+      
+      const {data} = await getPost(id,getSavdedArray);
      setName(data)
-      console.log(data,"user...");
+    })
+    
 
   }
-  user()
+  post()
 },[])
+//  let b;
+// let postM=name.map((item)=>{
+//   b=item
+//   return item
+// })
+
+console.log(name,"mmm");
 
 
   return (
     
     <div className="Post" ref={ref}>
             {/* <h4>{name.firstname}</h4> */}
-    <img src={data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : ""} alt=""  />
+    <img src={!saveItem?data.image ? process.env.REACT_APP_PUBLIC_FOLDER + data.image : "" :name.image ? process.env.REACT_APP_PUBLIC_FOLDER + name.image : ""} alt=""  />
 
     <div className="postReact">
         <img src={liked ? Heart : NotLike} alt="" style={{cursor:"pointer"}}  onClick={handleLike}/>

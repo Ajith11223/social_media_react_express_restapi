@@ -43,5 +43,6 @@ app.use('/chat',ChatRoute)
 app.use('/message',MessageRoute)
 app.use('/posts',PostRoute)
 app.use('/savepost',UserRoute)
+app.use('/savedpost',PostRoute)
 
 

@@ -21,17 +21,33 @@ import { getUser, savePost } from '../../api/UserRequest'
 
 
 const Post = ({data,userId}) => {
+  const {user} = useSelector((state)=> state.authReducer.authData);
+
+  const [name,setName] = useState([])
+
+  const [liked,setLiked] = useState(data.likes.includes(user._id))
+  const [likes,setLikes] = useState(data.likes.length);
+  const [saved,setSaved] = useState(user.savePost.includes(data._id))
+  // get user
+
+useEffect(()=>{
+  const user = async() =>{
+      const {data} = await getUser(userId);
+     setName(data)
+
+  }
+  user()
+},[])
+
 
 
   const ref = useRef(null);
   const dispatch = useDispatch()
-  const {user} = useSelector((state)=> state.authReducer.authData);
+  
 
-  const [liked,setLiked] = useState(data.likes.includes(user._id))
-  const [saved,setSaved] = useState(user.savePost.includes(data._id))
-  const [likes,setLikes] = useState(data.likes.length);
-  const [save,setSave] = useState(false)
-  const [name,setName] = useState(true)
+  // const [save,setSave] = useState(false)
+  
+ 
 
   const handleLike = () =>{
     setLiked((prev)=> !prev);
@@ -46,23 +62,13 @@ const handleDelete = (postId,ref) =>{
 }
 
 
-// get user
-
-useEffect(()=>{
-  const user = async() =>{
-      const {data} = await getUser(userId);
-     setName(data)
-
-  }
-  user()
-},[])
 
 // post save
 const handleSave =(postId,userId)=>{
+  savePost(postId,userId);
   setSaved((prev)=> !prev);
 
-  setSave((prev)=> !prev)
-  savePost(postId,userId);
+  // setSave((prev)=> !prev)
   
 }
 
@@ -77,12 +83,9 @@ const handleSave =(postId,userId)=>{
         <img src={liked ? Heart : NotLike} alt="" style={{cursor:"pointer"}}  onClick={handleLike}/>
         <img src={Comment} alt="" />
 
-{  
-  !save?user._id !== data.userId?<img src={Download} style={{width:"25px",height:"25px"}}  alt=""
-  onClick={() => handleSave(data._id,user._id)} />:"" : 
-  user._id !== data.userId? <img src={Completed} onClick={()=> handleSave(data._id,user._id)} style={{width:"25px",height:"25px"}}  alt="" />:"" 
-  
-}
+       {
+        user._id === data.userId?'':<img src={saved?Completed:Download}style={{width:"25px",height:"25px"}} onClick={() => handleSave(data._id,user._id)} alt="" />
+       }
 
   
      

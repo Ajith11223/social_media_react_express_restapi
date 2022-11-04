@@ -4,12 +4,12 @@ import TimePost from '../TimePost/TimePost'
 // import PostShare from '../PostShare/PostShare'
 import './TimelinePost.css'
 
-const TimelinePost = () => {
+const TimelinePost = ({saveItem}) => {
   return (
     <div className="TimelinePost">
-        time
+        
         {/* <PostShare/> */}
-        <TimePost/>
+        <TimePost saveItem={saveItem}/>
     </div>
   )
 }

@@ -12,7 +12,7 @@ import { getTimelinePostsUser } from '../../api/PostRequest'
 // import { getUser } from '../../api/UserRequest'
 
 
-const TimePost = () => {
+const TimePost = ({saveItem}) => {
 
 //   const dispatch = useDispatch()
 //   const params = useParams()
@@ -51,7 +51,7 @@ const TimePost = () => {
       {loading ? "Fetching posts..." : timelinePost.map((post, id) => {
             
         // return <TPost data={post} userId={post.userId} id={id}  key={id} />
-        return <TPost data={post} userId={post.userId}  id={id}  key={id} />
+        return <TPost data={post} userId={post.userId}   saveItem={saveItem}/>
         
         
       })}

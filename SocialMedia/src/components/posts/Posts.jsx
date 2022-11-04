@@ -17,7 +17,6 @@ const Posts = () => {
   let { posts, loading } = useSelector((state) => state.postReducer)
   const [allPosts, setAllPosts] = useState([])
 
-console.log(posts,"checking");
   useEffect(() => {
     dispatch(getTimelinePosts(user._id))
   }, [])

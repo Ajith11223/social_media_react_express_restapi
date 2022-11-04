@@ -15,4 +15,5 @@ export const getTimelinePostsUser =(userId) =>  API.get(`/post/${userId}/usertim
 export const likePost = (id,userId) => API.put(`/post/${id}/like`,{userId : userId})
 export const getAllPost = () =>API.get('/posts')
 export const deletePost = (id,userId) => API.put(`/post/${id}/${userId}/delete`)
+export const getPost = (postId,data) => API.get(`/savedpost/${postId}/save`)
  

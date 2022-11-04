@@ -7,7 +7,7 @@ import Cover from '../../img/cover.jpg'
  import Profile from '../../img/profileImg.jpg'
  import './ProfileCard.css'
 
-const ProfileCard = ({location}) => {
+const ProfileCard = ({location,handleSavePost}) => {
 
     const {user} = useSelector((state) => state.authReducer.authData)
     // const posts = useSelector((state)=>state.postReducer.posts)
@@ -26,7 +26,6 @@ const ProfileCard = ({location}) => {
     },[])
    
 
-    
 
   return (
    <div className="ProfileCard">
@@ -59,6 +58,12 @@ const ProfileCard = ({location}) => {
                     <span>{userPosts.length}</span>
                     <span>Posts</span>
                 </div>
+                <div className="vl"></div>
+                <div className="follow" onClick={()=>handleSavePost(true)} >
+                <span>{user.savePost.length}</span>
+                <span>Saved</span>
+            </div>
+            
                 </>
             )}
         </div>

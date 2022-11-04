@@ -20,6 +20,7 @@ export const createPost = async(req,res)=>{
 
 export const getPost = async(req,res)=>{
     const id = req.params.id;
+    console.log(req.body,"kkkkk");
 
     try {
 

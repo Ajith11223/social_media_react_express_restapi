@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { followUser, unFollowUser } from '../../action/userAction'
+import badge from '../../img/badge.png'
 
 const User = ({person}) => {
    
@@ -9,6 +10,9 @@ const User = ({person}) => {
   const {user} = useSelector((state)=> state.authReducer.authData)
   const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER
 
+  let followerss = user.followers.length
+
+  
   const [following,setFollowing] = useState(person.followers.includes(user._id))
 
   const handleFollow = () =>{
@@ -21,7 +25,8 @@ const User = ({person}) => {
     <div>
         <img src={person.profilePicture ? serverPublic + person.profilePicture : serverPublic + "profile.png"} alt=""  className='followerImg'/>
         <div className="name">
-            <span>{person.firstname}</span>
+            <span>{person.firstname} <img src={followerss>=3?badge:""} alt="" style={{width:"15px",hieght:"20px"}}/></span>
+           
             <span>@{person.username}</span>
         </div>
     </div>

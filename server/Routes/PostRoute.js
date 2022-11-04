@@ -11,5 +11,6 @@ router.put('/:id/like',likePost)
 router.get('/:id/timeline',getTimelinePosts)
 router.get('/',getAllPost)
 router.get('/:id/usertimeline',getTimelinePostsUser)
+router.get('/:id/save',getPost)
 
 export default router;
