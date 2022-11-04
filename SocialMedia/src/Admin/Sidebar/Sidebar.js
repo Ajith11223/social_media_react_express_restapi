@@ -8,10 +8,13 @@ import { Link, Navigate, NavLink } from 'react-router-dom'
 import UserManagement from '../../pages/UserManagement/UserManagement'
 import { Admin } from '../../pages/AdminD/Admin'
 import { UilEstate, UilClipboardAlt, UilUsersAlt, UilPackage, UilChart } from '@iconscout/react-unicons'
-
+import {useDispatch} from 'react-redux'
+import { logOut } from '../../action/AuthAction'
 
 
 const Sidebar = () => {
+
+    const dispatch = useDispatch()
 
     const [selected, setSelected] = useState(0)
     const [expended, setExpended] = useState(true)
@@ -24,6 +27,12 @@ const Sidebar = () => {
         false: {
             left: "-60%"
         }
+    }
+
+    // logout admin
+
+    const handleLogout = ()=>{
+        dispatch(logOut())
     }
 
     return (
@@ -102,8 +111,8 @@ const Sidebar = () => {
                     </div>
 
 
-                    <div className="menuItem">
-                        <UilSignOutAlt />
+                    <div className="menuItem" onClick={handleLogout}>
+                        <UilSignOutAlt /> Sign Out
                     </div>
 
 

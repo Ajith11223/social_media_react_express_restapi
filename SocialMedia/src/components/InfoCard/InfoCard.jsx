@@ -78,7 +78,7 @@ const handleLogOut = () =>{
         
     </div>
     <button className='button logout-button' onClick={handleLogOut}>
-        Logout
+        Logout 
     </button>
    </div>
   )

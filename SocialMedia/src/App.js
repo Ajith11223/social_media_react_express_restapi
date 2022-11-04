@@ -39,8 +39,7 @@ function App() {
          <Route path="/admin/user" element={user ? (admin ? <UserManagement /> : <Admin />) : <Navigate to="../auth" />} />
         <Route path="/post" element={user ? (admin ? <PostsManagement /> : <Admin />) : <Navigate to="../auth" />} />
         <Route path="/analytics" element={user ? (admin ? <PostsManagement /> : <Admin />) : <Navigate to="../auth" />} />
-        <Route path="/chat" element={user ? (admin ? <PostsManagement /> : <Admin />) : <Navigate to="../auth" />} />  
-
+        <Route path="/chat" element={user ? <Chat /> : <Navigate to="../auth" />} />  
 
         
         {/* <Route path="/admin" element={ admin ? <Admin /> : <Navigate to="../auth" />} /> */}

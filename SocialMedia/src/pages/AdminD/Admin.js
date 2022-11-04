@@ -12,6 +12,8 @@ import RightSide from '../../Admin/RightSide/RightSide'
 export  const Admin = () => {
 
 
+  
+
   return (
   <div className='admin'>
 <div className="AppGlass">
