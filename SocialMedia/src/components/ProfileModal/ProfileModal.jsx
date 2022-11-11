@@ -60,6 +60,7 @@ const handleSubmit = (e) =>{
       UserData.coverPicture =fileName;
       try {
         dispatch(uploadImage(data))
+        console.log(data,"modallll");
         
       } catch (error) {
         console.log(error);

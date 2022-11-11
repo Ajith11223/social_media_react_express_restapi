@@ -20,7 +20,6 @@ export const createPost = async(req,res)=>{
 
 export const getPost = async(req,res)=>{
     const id = req.params.id;
-    console.log(req.body,"kkkkk");
 
     try {
 
@@ -155,8 +154,8 @@ export const getTimelinePosts = async(req,res)=>{
 export const getAllPost = async(req,res) =>{
     try {
         let posts = await PostModel.find()
-        posts = posts.map((user)=>{
-        return user
+        posts = posts.map((post)=>{
+        return post
         })
         res.status(200).json(posts)
     } catch (error) {

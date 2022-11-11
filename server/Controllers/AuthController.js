@@ -7,7 +7,6 @@ import jwt from 'jsonwebtoken'
 // Registering new user
 export const registerUser = async (req, res) => {
 
-console.log(req.body);
 
     // hashing using bcrypt
 
@@ -44,26 +43,26 @@ export const loginUser = async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        const user = await UserModel.findOne({ username: username })
+        const user = await UserModel.findOne({ username: username ,block:false})
 
         if (user) {
             const validity = await bcrypt.compare(password, user.password)
 
             if (!validity) {
-                res.status(400).json("Wrong password")
+                res.status(400).json({message:"Wrong password"})
             } else {
                 //jwt create
                 const token = jwt.sign({
                     username: user.username, id: user._id
                 }, process.env.JWT, { expiresIn: "5h" })
-                res.status(200).json({ user, token })
+                res.status(200).json({ user, token ,message:"success"})
 
             }
 
 
 
         } else {
-            res.status(400).json("User Does not exists")
+            res.status(400).json({message:"User Does not exists"})
             console.log("user blocked");
            
         }

@@ -1,6 +1,6 @@
 
 const authReducer = (state = {authData : null,loading : false,error:false },action) =>{
-    console.log('aaaaaaaa', action);
+
 
     switch(action.type){
 
@@ -9,8 +9,9 @@ const authReducer = (state = {authData : null,loading : false,error:false },acti
         case "AUTH_SUCCESS" :
             localStorage.setItem("profile",JSON.stringify({...action?.data}))
             return {...state,authData : action.data,loading : false ,error :false} 
-
-        case "AUTH_FAIL" :
+            
+            case "AUTH_FAIL" :
+                console.log(action.data,"uuuuuuuuuy");
             return {...state,loading:false,error : true}  
             
             
@@ -18,9 +19,11 @@ const authReducer = (state = {authData : null,loading : false,error:false },acti
             return {...state, updateLoading: true , error: false}
         case "UPDATING_SUCCESS" :
             localStorage.setItem("profile", JSON.stringify({...action?.data}));
+           
             return {...state, authData: action.data, updateLoading: false, error: false}      
 
         case "UPDATING_FAIL" :
+            console.log(action.response.data,"redusccccccccccccccccccccccccccc");
             return {...state, updateLoading: true, error: true}  
             
             

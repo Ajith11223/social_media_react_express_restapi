@@ -12,7 +12,6 @@ import Chat from "./pages/Chat/Chat.js";
 function App() {
 
   const user = useSelector((state) => state.authReducer.authData)
-  console.log(user, "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
   let admin = false
   if (user) {
     admin = user.user.isAdmin

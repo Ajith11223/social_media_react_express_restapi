@@ -4,6 +4,7 @@ import Logo from '../../img/logo.png'
 import { useState } from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import { logIn, signUp } from '../../action/AuthAction'
+import Validate from '../../Validation/Validation'
 
 const Auth = () => {
 
@@ -14,11 +15,13 @@ const Auth = () => {
 
 
   const [data,setData] = useState({firstname:"",lastname:"",password:"",confirmpass:"",username:""})
+  const [err,setErr] = useState({})
 
   //password check
   const [confirmPass,setConfirmPass] = useState(true)
 
   const handleChange = (e) =>{
+      // const {name,value} = e.target
          setData({...data , [e.target.name] : e.target.value})
   }
 
@@ -26,10 +29,10 @@ const Auth = () => {
   const handleSubmit = (e)=>{
      
     e.preventDefault();
+    setErr(Validate(data))
 
-    if(isSignUp){
-     data.password === data.confirmpass ? dispatch(signUp(data)) : setConfirmPass(false);
-     console.log(data,"sign");
+    if(isSignUp){    
+      data.password === data.confirmpass ? dispatch(signUp(data)) : setConfirmPass(false);
     }else{
       dispatch(logIn(data))
     }
@@ -57,39 +60,67 @@ const resetForm = () =>{
             <form  className="infoForm authForm" onSubmit={handleSubmit}>
               <h3>{isSignUp ? "Sign Up" : "Log In"}</h3>
            {isSignUp &&    <div>
-                <input type="text" placeholder='First Name' 
-                className='infoInput' name='firstname' 
-                onChange={handleChange} value ={data.firstname}/>
+               <div className='validation'>
+               <input type="text" placeholder='First Name' 
+                 name='firstname' className='infoInput'
+                onChange={handleChange} value ={data.firstname} />
+                
+                {err.firstname && <p style={{color:"red"}}> {err.firstname}</p>}
+
+               </div>
+                
+                <div className='validation'>
                 <input type="text" placeholder='Last Name'
                  className='infoInput' name='lastname'
                   onChange={handleChange} value ={data.lastname}/>
+                   
+                  {err.lastname && <p style={{color:"red"}}> {err.lastname}</p>}
 
+                </div>
               </div>}
-              <div>
+
+              <div className='validation'>
               <input type="text" placeholder='User Name'
-               className='infoInput' name='username' 
+               className='infoInput passInput1' name='username' 
                onChange={handleChange} value ={data.username} />
+              
+               {err.username && <p style={{color:"red"}}> {err.username}</p>}
 
               </div>
               <div>
 
-              <input type="password" placeholder=' password'
-               className='infoInput' name='password' 
-               onChange={handleChange} value ={data.password}/>
+              <div className='validation'>
+              {
+                isSignUp?<input type="password" placeholder=' password'
+                className='infoInput passInput12' name='password' 
+                onChange={handleChange} value ={data.password}/> :
+                <input 
+                 type="password" placeholder=' password'
+                className='infoInput passInput' name='password' 
 
-            <span style={{display : confirmPass ? "none" : "block",
+                onChange={handleChange} value ={data.password}/>
+              }
+               
+               {err.password && <p  style={{position:"relative",right:"-50px",color:"red"}}> {err.password}</p>}
+
+              </div>
+              <span style={{display : confirmPass ? "none" : "block",
               color:"red",fontSize:"12px",
               alignSelf:"flex-end",
               marginRight:"5px"}}>
 
-                * blocked user
+                {/* * blocked user */}
 
               </span>
 
+              <div className='validation'>
               {isSignUp && <input type="password" 
               placeholder='Confirm password'
-               className='infoInput' name='confirmpass' 
+               className='infoInput passInput12' name='confirmpass' 
                onChange={handleChange} value ={data.confirmpass} />}
+               
+               {isSignUp?err.confirmpass && <p style={{color:"red"}}> {err.confirmpass}</p>:""}
+              </div>
 
               </div>
               <span style={{display : confirmPass ? "none" : "block",
