@@ -27,11 +27,11 @@ const Auth = () => {
 
 
   const handleSubmit = (e)=>{
-     
-    e.preventDefault();
+    
     setErr(Validate(data))
+    e.preventDefault();
 
-    if(isSignUp){    
+    if(isSignUp && data.password !== ""){    
       data.password === data.confirmpass ? dispatch(signUp(data)) : setConfirmPass(false);
     }else{
       dispatch(logIn(data))

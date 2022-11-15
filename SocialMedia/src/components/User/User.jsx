@@ -2,7 +2,10 @@ import React from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { followUser, unFollowUser } from '../../action/userAction'
+import { chatRequest } from '../../api/ChatRequest'
 import badge from '../../img/badge.png'
+import msg from '../../img/msg.jpeg'
+
 
 const User = ({person}) => {
    
@@ -20,6 +23,15 @@ const User = ({person}) => {
    setFollowing((prev)=> !prev)
   }
 
+  const handleChat = (chatID)=>{
+    const data ={
+      senderId:user._id,
+      receiverId:chatID
+    }
+   chatRequest(data)
+   console.log(data);
+  }
+
   return (
     <div className="follower">
     <div>
@@ -33,6 +45,7 @@ const User = ({person}) => {
     <button className={following ? 'button fc-button UnfollowButton' : "button fc-button"} onClick={handleFollow}>
         {following? "unfollow" : " Follow"}
     </button>
+    <img src={msg} alt="" style={{width:"25px",hieght:"25px"}} onClick={()=>handleChat(person._id)} />
 </div>
   )
 }
